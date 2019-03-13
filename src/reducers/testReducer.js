@@ -1,7 +1,8 @@
 import { cloneDeep } from "lodash";
 
 const defaultstate = {
-  loading: false
+  loading: false,
+  todos: []
 };
 
 export default (state = cloneDeep(defaultstate), action) => {
@@ -9,7 +10,13 @@ export default (state = cloneDeep(defaultstate), action) => {
   switch (type) {
     case "LOADING_CHANGE":
       return {
+        ...state,
         loading: payload
+      };
+    case "ADD_TODO_ACTION":
+      return {
+        ...state,
+        todos: [...state.todos, payload]
       };
     default:
       return state;
